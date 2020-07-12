@@ -10,11 +10,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan(basePackages = "com.luxixi.mapper")
-public class PerProjectApplication extends SpringBootServletInitializer {
+public class PerProjectApplication extends SpringBootServletInitializer{
 
     private final static Logger LOGGER = LoggerFactory.getLogger(PerProjectApplication.class);
 

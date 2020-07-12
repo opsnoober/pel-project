@@ -1,11 +1,16 @@
 package com.luxixi.domain.basePage;
 
-import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+@ApiModel(value = "分页")
 public class InputPageRequest implements Serializable {
 
+    @ApiModelProperty(value = "页数")
     private Integer pageNum = 1;
 
+    @ApiModelProperty(value = "页码")
     private Integer pageSize = 10;
 
     public Integer getPageNum() {

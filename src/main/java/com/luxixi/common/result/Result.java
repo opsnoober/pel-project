@@ -1,8 +1,9 @@
 package com.luxixi.common.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.luxixi.common.enums.ResultEnum;
 import com.luxixi.utils.Pager;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
@@ -14,16 +15,16 @@ import java.util.List;
  * @param <T>
  */
 @Data
-//@ApiModel(value = "全局统一返回数据结构")
+@ApiModel(value = "全局统一返回数据结构")
 public class Result<T> {
 
-//    @ApiModelProperty(value = "返回码")
+    @ApiModelProperty(value = "返回码")
     private Integer status;
 
-//    @ApiModelProperty(value = "提示信息")
+    @ApiModelProperty(value = "提示信息")
     private String message;
 
-//    @ApiModelProperty(value = "业务数据")
+    @ApiModelProperty(value = "业务数据")
     private T result;
 
     public Result() {
