@@ -11,7 +11,7 @@
     <groupId>com.luxixi</groupId>
     <artifactId>per-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>per-project</name>
     <description>Demo project for Spring Boot</description>
 
