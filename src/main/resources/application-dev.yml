@@ -39,6 +39,6 @@ mybatis:
   type-aliases-package: com.luxixi.domain.entity
 
 #打印sql
-logging:
-  level:
-    com.luxixi.dao: DEBUG
+#logging:
+#  level:
+#    com.luxixi.dao: DEBUG
