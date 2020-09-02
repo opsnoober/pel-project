@@ -18,7 +18,7 @@ spring:
   redis:
     database: 0
     host: 123.207.214.90
-    port: 16379
+    port: 6379
     password: lxy561021...
     timeout: 3000 # 连接超时时间（毫秒）
     jedis:

@@ -1,9 +1,11 @@
 package com.luxixi.perproject;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.Random;
 
 /**
  * 删除一个文件夹以及子文件夹
@@ -35,6 +37,20 @@ public class Demo01 {
                 deleteFile(f);
             }
             f.delete();
+        }
+    }
+
+    private static final int[] number = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    @Test
+    public void randomCode() {
+        for (int x = 0; x<500;x++){
+            int len = 6;
+            final Random random = new Random();
+            StringBuffer str = new StringBuffer();
+            for (int i = 0; i < len; i++) {
+                str.append(number[random.nextInt(number.length)]);
+            }
+            System.out.println(str);
         }
     }
 }
