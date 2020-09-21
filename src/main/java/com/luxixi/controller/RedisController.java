@@ -29,4 +29,10 @@ public class RedisController extends BaseController {
     public String getByKey(@PathVariable String key){
         return redisService.getByKey(key);
     }
+
+    @ApiOperation(value = "获取公众号的access_token")
+    @GetMapping("/getMpAccessToken")
+    public String getMpAccessToken(){
+        return redisService.getMpAccessToken();
+    }
 }

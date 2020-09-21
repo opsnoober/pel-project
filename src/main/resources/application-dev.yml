@@ -42,3 +42,18 @@ mybatis:
 #logging:
 #  level:
 #    com.luxixi.dao: DEBUG
+
+wx:
+  mp:
+    useRedis: true
+    redisConfig:
+      host: 123.207.214.90
+      port: 6379
+      password: lxy561021...
+      database: 0
+      timeout: 3000
+    configs:
+      - appId: wx478a1b8779dd57fd # 第一个公众号的appid
+        secret: 11712d404d9c688b57d00333741cd89f # 公众号的appsecret
+        token:  # 接口配置里的Token值
+        aesKey:  # 接口配置里的EncodingAESKey值

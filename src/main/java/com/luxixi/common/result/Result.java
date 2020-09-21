@@ -1,13 +1,14 @@
 package com.luxixi.common.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.luxixi.common.enums.ResultEnum;
 import com.luxixi.utils.Pager;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
+
 import java.util.List;
-import com.luxixi.common.enums.ResultEnum;
 
 /**
  * 统一返回
