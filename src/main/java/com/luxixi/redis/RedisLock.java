@@ -1,52 +1,63 @@
 package com.luxixi.redis;
 
 
-import redis.clients.jedis.Jedis;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.stereotype.Component;
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
-import java.util.Collections;
-
+@Component
 public class RedisLock {
 
-    private static final String LOCK_SUCCESS = "OK";
-    private static final String SET_IF_NOT_EXIST = "NX";
-    private static final String SET_WITH_EXPIRE_TIME = "PX";
-    private static final Long RELEASE_SUCCESS = 1L;
+    private static final Logger logger = LoggerFactory.getLogger(RedisLock.class);
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     /**
      * 尝试获取分布式锁
-     * @param jedis Redis客户端
      * @param lockKey 锁
      * @param requestId 请求标识
      * @param expireTime 超期时间
      * @return 是否获取成功
      */
-//    public static boolean tryGetDistributedLock(Jedis jedis, String lockKey, String requestId, int expireTime) {
-//
-//        String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
-//
-//        if (LOCK_SUCCESS.equals(result)) {
-//            return true;
-//        }
-//        return false;
-//
-//    }
+    public boolean tryGetDistributedLock(String lockKey, String requestId, int expireTime) {
+
+        boolean locked = false;
+        int tryCount = 3;
+        while (!locked && tryCount > 0) {
+            locked = redisTemplate.opsForValue().setIfAbsent(lockKey, requestId, expireTime, TimeUnit.MINUTES);
+            tryCount--;
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                logger.error("线程被中断" + Thread.currentThread().getId(), e);
+            }
+        }
+        return locked;
+
+    }
 
     /**
-     * 释放分布式锁
-     * @param jedis Redis客户端
-     * @param lockKey 锁
-     * @param requestId 请求标识
-     * @return 是否释放成功
+     * 使用lua脚本解锁，不会解除别人锁
+     * @param lockKey
+     * @param requestId
+     * @return
      */
-    public static boolean releaseDistributedLock(Jedis jedis, String lockKey, String requestId) {
-
-        String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-        Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(requestId));
-
-        if (RELEASE_SUCCESS.equals(result)) {
-            return true;
-        }
-        return false;
-
+    public boolean unlockLua(String lockKey, String requestId) {
+        if (lockKey == null || requestId == null)
+            return false;
+        DefaultRedisScript<Long> redisScript = new DefaultRedisScript();
+        //用于解锁的lua脚本位置
+        redisScript.setLocation(new ClassPathResource("unlock.lua"));
+        redisScript.setResultType(Long.class);
+        //没有指定序列化方式，默认使用上面配置的
+        Object result = redisTemplate.execute(redisScript, Arrays.asList(lockKey), requestId);
+        return result.equals(Long.valueOf(1));
     }
 }
