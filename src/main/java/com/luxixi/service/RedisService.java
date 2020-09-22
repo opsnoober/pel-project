@@ -1,8 +1,10 @@
 package com.luxixi.service;
 
+import com.luxixi.common.result.Result;
+
 public interface RedisService {
 
-    boolean add(String key, String value);
+    Result add(String key, String value);
 
     String getByKey(String key);
 

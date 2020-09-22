@@ -1,13 +1,10 @@
 package com.luxixi.controller;
 
+import com.luxixi.common.result.Result;
 import com.luxixi.service.RedisService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
@@ -20,7 +17,7 @@ public class RedisController extends BaseController {
 
     @ApiOperation(value = "添加键值对")
     @GetMapping("/add")
-    public boolean add(String key , String value){
+    public Result add(@RequestParam("key") String key , @RequestParam("value")String value){
         return redisService.add(key,value);
     }
 
