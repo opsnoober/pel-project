@@ -4,15 +4,15 @@ import com.luxixi.common.result.Result;
 import com.luxixi.service.RedisService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/redis")
 @Api(tags = "redis通用接口")
 public class RedisController extends BaseController {
 
-    @Resource
+    @Autowired
     private RedisService redisService;
 
     @ApiOperation(value = "添加键值对")
