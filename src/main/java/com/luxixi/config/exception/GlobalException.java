@@ -1,4 +1,4 @@
-package com.luxixi.exception;
+package com.luxixi.config.exception;
 
 
 import cn.hutool.http.HttpStatus;

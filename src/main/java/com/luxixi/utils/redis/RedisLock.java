@@ -1,4 +1,4 @@
-package com.luxixi.redis;
+package com.luxixi.utils.redis;
 
 
 import org.slf4j.Logger;

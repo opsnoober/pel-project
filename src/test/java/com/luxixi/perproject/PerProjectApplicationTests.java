@@ -1,6 +1,6 @@
 package com.luxixi.perproject;
 
-import com.luxixi.dao.StudentInfoDao;
+import com.luxixi.mapper.StudentInfoDao;
 import com.luxixi.domain.entity.StudentInfoEntity;
 import com.luxixi.utils.ResultUtil;
 import org.junit.jupiter.api.Test;

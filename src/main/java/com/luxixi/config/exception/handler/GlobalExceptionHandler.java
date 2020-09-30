@@ -1,8 +1,8 @@
-package com.luxixi.config.handler;
+package com.luxixi.config.exception.handler;
 
 import com.luxixi.common.enums.ResultEnum;
 import com.luxixi.common.result.Result;
-import com.luxixi.exception.GlobalException;
+import com.luxixi.config.exception.GlobalException;
 import com.luxixi.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ import java.nio.file.AccessDeniedException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(com.luxixi.config.handler.GlobalExceptionHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(com.luxixi.config.exception.handler.GlobalExceptionHandler.class);
 
 
     /**

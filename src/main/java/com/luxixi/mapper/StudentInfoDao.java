@@ -1,4 +1,4 @@
-package com.luxixi.dao;
+package com.luxixi.mapper;
 
 import com.luxixi.domain.entity.StudentInfoEntity;
 import com.luxixi.mapper.BaseMapper;
