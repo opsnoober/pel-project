@@ -6,7 +6,7 @@ import tk.mybatis.mapper.common.MySqlMapper;
 
 /**
  * 基础Mapper
- * @author xiaoyu
+ * @author xixi
  * @param <T>
  */
 @RegisterMapper
